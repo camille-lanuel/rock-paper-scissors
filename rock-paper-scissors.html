@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<title>Rock-Paper-Scissors</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		const CHOICES = ["rock", "paper", "scissors"];
+
+		function getHumanChoice() {
+			return parseInt(prompt("Enter your choice: Rock(0), Paper(1), Scissors(2)"));
+		}
+
+		function getComputerChoice() {
+			return Math.floor(Math.random() * 3);
+		}
+
+		function playRound(human_choice, computer_choice) {
+			if(human_choice === (computer_choice + 1) % 3) {
+				console.log("you win!");
+				return [1, 0];
+			} else if (computer_choice === (human_choice + 1) % 3) {
+				console.log("you lose!");
+				return [0, 1];
+			} else {
+				console.log("it's a tie!");
+				return [0, 0];
+			}
+		}
+
+		function playGame() {
+			let human_score = 0;
+			let computer_score = 0;
+
+			for (i = 1; i < 6; i++) {
+				console.log("----------");
+				console.log("round " + i);
+				let human_choice = getHumanChoice();
+				let computer_choice = getComputerChoice();
+				console.log("you play " + CHOICES[human_choice]);
+				console.log("computer plays " + CHOICES[computer_choice]);
+				let res = playRound(human_choice, computer_choice);
+				human_score += res[0];
+				computer_score += res[1];
+			}
+
+			console.log("you: " + human_score + " / computer: " + computer_score);
+			if (human_score > computer_score) {
+				console.log("YOU WIN!");
+			} else if (human_score < computer_score) {
+				console.log("LOOSER!!");
+			} else {
+				console.log("it's a tie!");
+			}
+		}
+
+		playGame();
+	</script>
+</body>
+
+</html>
