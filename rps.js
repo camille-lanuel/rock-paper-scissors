@@ -25,7 +25,7 @@ function playGame() {
   let human_score = 0;
   let computer_score = 0;
 
-  for (i = 1; i < 6; i++) {
+  // for (i = 1; i < 6; i++) {
     console.log("----------");
     console.log("round " + i);
     let human_choice = getHumanChoice();
@@ -35,7 +35,7 @@ function playGame() {
     let res = playRound(human_choice, computer_choice);
     human_score += res[0];
     computer_score += res[1];
-  }
+  // }
 
   console.log("you: " + human_score + " / computer: " + computer_score);
   if (human_score > computer_score) {
