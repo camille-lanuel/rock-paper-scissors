@@ -1,48 +1,69 @@
-const CHOICES = ["rock", "paper", "scissors"];
+const CHOICES = ["Rock", "Paper", "Scissors"];
+let human_score = 0;
+let computer_score = 0;
+let round = 0;
 
-function getHumanChoice() {
-  return parseInt(prompt("Enter your choice: Rock(0), Paper(1), Scissors(2)"));
-}
-
-function getComputerChoice() {
+function getComputerChoice()
+{
   return Math.floor(Math.random() * 3);
 }
 
-function playRound(human_choice, computer_choice) {
+function roundWinner(human_choice, computer_choice)
+{
+  let res = "";
   if(human_choice === (computer_choice + 1) % 3) {
-    console.log("you win!");
-    return [1, 0];
+    res = ". You won the round!";
+    human_score++;
   } else if (computer_choice === (human_choice + 1) % 3) {
-    console.log("you lose!");
-    return [0, 1];
+    res = ". You lost the round!";
+    computer_score++;
   } else {
-    console.log("it's a tie!");
-    return [0, 0];
+    res = ". It's a tie!";
+  }
+  return res;
+}
+
+function displayRound()
+{
+  let res = document.createElement("p");
+  res.textContent = "Round " + round;
+  return res
+}
+
+function displayScores()
+{
+  let res = document.createElement("p");
+  res.textContent = "Scores: " + human_score + " - " + computer_score;
+  return res
+}
+
+function disableButtons()
+{
+  var allBtns = document.getElementsByTagName("button");
+  for (btn of allBtns) {
+    btn.disabled = true;
   }
 }
 
-function playGame() {
-  let human_score = 0;
-  let computer_score = 0;
+function playRound(human_choice) {
+  round++;
+  let history = document.getElementById("history");
+  let played_round = document.createElement("section");
+  played_round.appendChild(displayRound());
 
-  // for (i = 1; i < 6; i++) {
-    console.log("----------");
-    console.log("round " + i);
-    let human_choice = getHumanChoice();
-    let computer_choice = getComputerChoice();
-    console.log("you play " + CHOICES[human_choice]);
-    console.log("computer plays " + CHOICES[computer_choice]);
-    let res = playRound(human_choice, computer_choice);
-    human_score += res[0];
-    computer_score += res[1];
-  // }
+  let p = document.createElement("p");
+  let computer_choice = getComputerChoice();
+  p.textContent = CHOICES[human_choice] + " against " + CHOICES[computer_choice];
+  p.textContent += roundWinner(human_choice, computer_choice);
+  played_round.appendChild(p);
+  played_round.appendChild(displayScores());
+  history.prepend(played_round);
 
-  console.log("you: " + human_score + " / computer: " + computer_score);
-  if (human_score > computer_score) {
-    console.log("YOU WIN!");
-  } else if (human_score < computer_score) {
-    console.log("LOOSER!!");
-  } else {
-    console.log("it's a tie!");
+  if (human_score == 5) {
+    document.getElementById("winner").textContent = "YOU WON THE GAME :D";
+    disableButtons();
+  } else if (computer_score == 5) {
+    document.getElementById("winner").textContent = "YOU LOST THE GAME :(";
+    disableButtons();
   }
 }

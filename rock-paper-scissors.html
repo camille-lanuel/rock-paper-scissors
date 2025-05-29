@@ -3,15 +3,30 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
 	<title>Rock-Paper-Scissors</title>
 	<script src="rps.js"></script>
 </head>
 
 <body>
-	<script>playGame()</script>
+
+<h1>
+	Play Rock-Paper-Scissors against the computer!
+</h1>
+<h2>
+	Best of 5: the first player to win 5 rounds wins the game.
+</h2>
+
+<div id="choices">
+	<button onclick="playRound(0)">Rock</button>
+	<button onclick="playRound(1)">Paper</button>
+	<button onclick="playRound(2)">Scissors</button>
+</div>
+
+<section id="winner"></section>
+
+<div id="history"></div>
+
 </body>
-
-
-
 </html>
