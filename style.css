@@ -47,7 +47,7 @@ button {
   cursor: pointer;
   font-family: inherit;
   padding: 0.5em;
-  width: 80px;
+  width: 8em;
 }
 
 button:hover, button:disabled {
