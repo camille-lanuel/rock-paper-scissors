@@ -1,9 +1,9 @@
 /* rose */
 :root {
-  --bkg: #fdfbfa;
-  --txt: #4d2d4a;
-  --accent: #964262;
-  --accent2: #fa9fa3;
+  --bkg: #ffe5ea;
+  --txt: #333;
+  --accent: #e381b1;
+  --accent2: #fefefe;
 }
 
 /* GENERAL */
@@ -41,9 +41,9 @@ section {
 
 button {
   background-color: var(--accent);
-  border: none;
+  border: 2px solid var(--accent);
   border-radius: 4px;
-  color: var(--bkg);
+  color: var(--accent2);
   cursor: pointer;
   font-family: inherit;
   padding: 0.5em;
@@ -52,7 +52,8 @@ button {
 
 button:hover, button:disabled {
   background-color: var(--accent2);
-  color: var(--txt);
+  border: 2px solid var(--accent);
+  color: var(--accent);
 }
 
 button:disabled {
