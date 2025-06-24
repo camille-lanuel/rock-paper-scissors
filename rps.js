@@ -52,13 +52,13 @@ function roundWinner(human_choice, computer_choice)
 {
   let res = "";
   if(human_choice === (computer_choice + 1) % 3) {
-    res = ". You won the round!";
+    res = ". You WON the round!";
     human_score++;
   } else if (computer_choice === (human_choice + 1) % 3) {
-    res = ". You lost the round!";
+    res = ". You LOST the round!";
     computer_score++;
   } else {
-    res = ". It's a tie!";
+    res = ". It's a TIE!";
   }
   return res;
 }

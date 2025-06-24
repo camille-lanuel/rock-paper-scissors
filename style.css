@@ -11,14 +11,15 @@
 body {
   background-color: var(--bkg);
   color: var(--txt);
-  font-family: sans-serif;
+  font-family: Quicksand, sans-serif;
+  font-size: 1.2em;
   margin: auto;
   max-width: 600px;
   padding: 1em;
 }
 
 ::selection {
-  background-color: var(--accent2);
+  background-color: var(--accent);
 }
 
 h1, h2 {
