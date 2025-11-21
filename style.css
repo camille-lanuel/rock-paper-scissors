@@ -4,7 +4,7 @@
   --txt: #402e32;
   --accent: #ffba00;
   --accent2: #006b60;
-  --accent3:  #b5a999;
+  --accent3: #b5a999;
 }
 
 /* GENERAL */
@@ -20,7 +20,8 @@ body {
 }
 
 ::selection {
-  background-color: var(--accent);
+  background-color: var(--accent2);
+  color: var(--bkg);
 }
 
 h1, h2 {
@@ -29,13 +30,19 @@ h1, h2 {
 
 h2 {
   font-weight: normal;
+  text-align: right;
 }
 
 section {
-  border: 2px solid var(--txt);
-  border-radius: 8px;
-  box-shadow: 4px 4px var(--txt);
   padding: 1em 0;
+}
+
+#round, #winner {
+  text-align: center;
+}
+
+#winner {
+  font-weight: bold;
 }
 
 /* BUTTONS */
@@ -49,32 +56,29 @@ section {
 
 button {
   background-color: var(--accent);
-  border: 2px solid var(--txt);
-  border-radius: 8px;
-  box-shadow: 4px 4px var(--txt);
   color: var(--txt);
   cursor: pointer;
   font-family: inherit;
   font-size: 1.1em;
-  padding: 0.5em;
   min-width: 6em;
+  padding: 0.5em;
 }
 
 button:hover {
   background-color: var(--accent2);
-  color:  var(--bkg);
+  color: var(--bkg);
 }
 
 button:disabled {
   background-color: var(--accent3);
-  color:  var(--bkg);
+  color: var(--bkg);
   cursor: not-allowed;
 }
 
-#round, #winner {
-  text-align: center;
-}
+/* BORDERS */
 
-#winner {
-  font-weight: bold;
+section, button {
+  border: 2px solid var(--txt);
+  border-radius: 8px;
+  box-shadow: 4px 4px var(--txt);
 }
