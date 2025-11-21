@@ -53,7 +53,7 @@ section {
   flex-wrap: wrap;
   column-gap: 1em;
   line-gap: 1em;
-  margin: 1em 0;
+  margin: 2em 0 1em 0;
 }
 
 button {
@@ -62,9 +62,9 @@ button {
   cursor: pointer;
   font-family: inherit;
   font-size: 1.1em;
+  margin: 0.5em;
   min-width: 6em;
   padding: 0.5em;
-  margin: 0.5em;
 }
 
 button:hover {
