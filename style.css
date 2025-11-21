@@ -1,9 +1,10 @@
 /* rose */
 :root {
-  --bkg: #ffe5ea;
-  --txt: #333;
-  --accent: #e381b1;
-  --accent2: #fefefe;
+  --bkg: #fff8f0;
+  --txt: #402e32;
+  --accent: #ffba00;
+  --accent2: #006b60;
+  --accent3:  #b5a999;
 }
 
 /* GENERAL */
@@ -11,8 +12,8 @@
 body {
   background-color: var(--bkg);
   color: var(--txt);
-  font-family: Quicksand, sans-serif;
-  font-size: 1.2em;
+  font-family: "Playpen Sans", cursive;
+  font-size: 1.1em;
   margin: auto;
   max-width: 600px;
   padding: 1em;
@@ -26,9 +27,15 @@ h1, h2 {
   text-wrap: balance;
 }
 
+h2 {
+  font-weight: normal;
+}
+
 section {
-  border-top: 1px solid var(--accent);
-  margin: 1em 0;
+  border: 2px solid var(--txt);
+  border-radius: 8px;
+  box-shadow: 4px 4px var(--txt);
+  padding: 1em 0;
 }
 
 /* BUTTONS */
@@ -37,36 +44,37 @@ section {
   display: flex;
   justify-content: center;
   column-gap: 1em;
-  margin-top: 2em;
+  margin: 2em 0;
 }
 
 button {
   background-color: var(--accent);
-  border: 2px solid var(--accent);
-  border-radius: 4px;
-  color: var(--accent2);
+  border: 2px solid var(--txt);
+  border-radius: 8px;
+  box-shadow: 4px 4px var(--txt);
+  color: var(--txt);
   cursor: pointer;
   font-family: inherit;
+  font-size: 1.1em;
   padding: 0.5em;
-  width: 8em;
+  min-width: 6em;
 }
 
-button:hover, button:disabled {
+button:hover {
   background-color: var(--accent2);
-  border: 2px solid var(--accent);
-  color: var(--accent);
+  color:  var(--bkg);
 }
 
 button:disabled {
+  background-color: var(--accent3);
+  color:  var(--bkg);
   cursor: not-allowed;
 }
 
-/* WINNER SECTION */
+#round, #winner {
+  text-align: center;
+}
 
 #winner {
-  border: none;
   font-weight: bold;
-  align-content: center;
-  min-height: 2em; /* so it takes space when empty */
-  text-align: center;
 }
