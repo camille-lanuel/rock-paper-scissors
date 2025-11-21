@@ -83,8 +83,8 @@ function playRound(human_choice) {
   played_round.innerHTML = "";
   played_round.appendChild(displayRound());
 
-  let p = document.createElement("p");
   let computer_choice = getComputerChoice();
+  let p = document.createElement("p");
   p.textContent = CHOICES[human_choice] + " VS " + CHOICES[computer_choice];
   played_round.appendChild(p);
   p = document.createElement("p");
