@@ -2,6 +2,7 @@ const CHOICES = ["Rock", "Paper", "Scissors"];
 let human_score = 0;
 let computer_score = 0;
 let round = 0;
+let human_wins = null;
 
 function getComputerChoice()
 {
@@ -43,8 +44,9 @@ function reset()
   human_score = 0;
   computer_score = 0;
   round = 0;
+  human_wins = null;
   enableButtons();
-  document.getElementById("winner").innerHTML = "";
+  document.getElementById("endgame").innerHTML = "";
   document.getElementById("round").innerHTML = "Click on a button to start the game!";
 }
 
@@ -63,16 +65,16 @@ function roundWinner(human_choice, computer_choice)
   return res;
 }
 
-function gameWinner()
+function endGame()
 {
-  let btn = "<button onclick='reset()'>New game</button>";
-  if (human_score == 5) {
-      disableButtons();
-      document.getElementById("winner").innerHTML = "<p>YOU WON THE GAME :D</p>" + btn;
-    } else if (computer_score == 5) {
-      disableButtons();
-      document.getElementById("winner").innerHTML = "<p>YOU LOST THE GAME :(</p>" + btn;
-    }
+  disableButtons();
+  console.log(human_wins);
+  if (human_wins) {
+    document.getElementById("endgame").innerHTML = "<p>YOU WON THE GAME :D</p>"
+  } else {
+    document.getElementById("endgame").innerHTML = "<p>YOU LOST THE GAME :(</p>"
+  }
+  document.getElementById("endgame").innerHTML += "<button onclick='reset()'>New game</button>";
 }
 
 function playRound(human_choice) {
@@ -90,5 +92,11 @@ function playRound(human_choice) {
   played_round.appendChild(p);
   played_round.appendChild(displayScores());
 
-  gameWinner();
+  if(human_score == 5) {
+    human_wins = true;
+    endGame();
+  } else if (computer_score == 5) {
+    human_wins = false;
+    endGame();
+  }
 }
