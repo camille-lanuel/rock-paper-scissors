@@ -25,6 +25,7 @@ body {
 }
 
 h1, h2 {
+  margin-top: 0;
   text-wrap: balance;
 }
 
@@ -43,6 +44,12 @@ section {
 
 #endgame {
   font-weight: bold;
+}
+
+footer {
+  bottom: 0;
+  padding: 1em 0;
+  position: fixed;
 }
 
 /* BUTTONS */
