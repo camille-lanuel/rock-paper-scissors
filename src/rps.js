@@ -38,8 +38,8 @@ function reset()
   round = 0;
   human_wins = null;
   enableButtons();
-  document.getElementById("endgame").innerHTML = "";
-  document.getElementById("round").innerHTML = "Click on a button to start the game!";
+  document.getElementById("endgame").textContent = "";
+  document.getElementById("round").textContent = "Click on a button to start the game!";
 }
 
 function roundDisplay(human_choice, computer_choice)
