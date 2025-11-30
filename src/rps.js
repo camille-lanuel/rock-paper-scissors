@@ -1,92 +1,90 @@
 const CHOICES = ["Rock", "Paper", "Scissors"];
-let human_score = 0;
-let computer_score = 0;
-let human_wins = null;
+let humanScore = 0;
+let computerScore = 0;
+let humanWins = null;
 
 function getComputerChoice()
 {
-  return Math.floor(Math.random() * 3);
+	return Math.floor(Math.random() * 3);
 }
 
 function displayScores()
 {
-  let res = document.createElement("p");
-  res.textContent = human_score + " - " + computer_score;
-  return res
+	let res = document.createElement("p");
+	res.textContent = humanScore + " - " + computerScore;
+	return res
 }
 
 function disableButtons()
 {
-  var allBtns = document.getElementsByTagName("button");
-  for (btn of allBtns) {
-    btn.disabled = true;
-  }
+	let allBtns = document.getElementsByTagName("button");
+	for (btn of allBtns) {
+		btn.disabled = true;
+	}
 }
 
 function enableButtons()
 {
-  var allBtns = document.getElementsByTagName("button");
-  for (btn of allBtns) {
-    btn.disabled = false;
-  }
+	let allBtns = document.getElementsByTagName("button");
+	for (btn of allBtns) {
+		btn.disabled = false;
+	}
 }
 
 function reset()
 {
-  human_score = 0;
-  computer_score = 0;
-  round = 0;
-  human_wins = null;
-  enableButtons();
-  document.getElementById("endgame").textContent = "";
-  document.getElementById("round").textContent = "Click on a button to start the game!";
+	humanScore = 0;
+	computerScore = 0;
+	round = 0;
+	humanWins = null;
+	enableButtons();
+	document.getElementById("endgame").textContent = "";
+	document.getElementById("round").textContent = "Click on a button to start the game!";
 }
 
 function roundDisplay(human_choice, computer_choice)
 {
-  let res = "";
-  if(human_choice === (computer_choice + 1) % 3) {
-    res = "You WON the round!";
-    human_score++;
-  } else if (computer_choice === (human_choice + 1) % 3) {
-    res = "You LOST the round...";
-    computer_score++;
-  } else {
-    res = "It's a TIE!";
-  }
-  return res;
+	if(human_choice === (computer_choice + 1) % 3) {
+		humanScore++;
+		return "You WON the round!";
+	}
+	if (computer_choice === (human_choice + 1) % 3) {
+		computerScore++;
+		return "You LOST the round...";
+	}
+	return "It's a TIE!";
 }
 
 function endGame()
 {
-  disableButtons();
-  console.log(human_wins);
-  if (human_wins) {
-    document.getElementById("endgame").innerHTML = "<p>YOU WON THE GAME :)</p>"
-  } else {
-    document.getElementById("endgame").innerHTML = "<p>YOU LOST THE GAME :(</p>"
-  }
-  document.getElementById("endgame").innerHTML += "<button onclick='reset()'>New game</button>";
+	disableButtons();
+	console.log(humanWins);
+	if (humanWins) {
+		document.getElementById("endgame").innerHTML = "<p>YOU WON THE GAME :)</p>"
+	} else {
+		document.getElementById("endgame").innerHTML = "<p>YOU LOST THE GAME :(</p>"
+	}
+	document.getElementById("endgame").innerHTML += "<button onclick='reset()'>New game</button>";
 }
 
 function playRound(human_choice) {
-  let played_round = document.getElementById("round");
-  played_round.innerHTML = "";
+	let played_round = document.getElementById("round");
+	played_round.innerHTML = "";
 
-  let computer_choice = getComputerChoice();
-  let p = document.createElement("p");
-  p.textContent = CHOICES[human_choice] + " VS " + CHOICES[computer_choice];
-  played_round.appendChild(p);
-  p = document.createElement("p");
-  p.textContent = roundDisplay(human_choice, computer_choice);
-  played_round.appendChild(p);
-  played_round.appendChild(displayScores());
+	let computer_choice = getComputerChoice();
+	let p = document.createElement("p");
+	p.textContent = `${CHOICES[human_choice]} VS ${CHOICES[computer_choice]}`;
+	played_round.appendChild(p);
+	p = document.createElement("p");
+	p.textContent = roundDisplay(human_choice, computer_choice);
+	played_round.appendChild(p);
+	played_round.appendChild(displayScores());
 
-  if(human_score == 5) {
-    human_wins = true;
-    endGame();
-  } else if (computer_score == 5) {
-    human_wins = false;
-    endGame();
-  }
+	if(humanScore == 5) {
+		humanWins = true;
+		endGame();
+	} else if (computerScore == 5) {
+		humanWins = false;
+		endGame();
+	}
 }
