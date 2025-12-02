@@ -17,7 +17,7 @@ getWinningScore = () => {return WINNING_SCORE;}
 
 // RPS game functions
 
-getComputerChoice = () =>
+getComputerChoice()
 {
 	return Math.floor(Math.random() * 3);
 }
@@ -29,25 +29,25 @@ getRoundWinner = (humanChoice, computerChoice) =>
 	return 0;
 }
 
-updateScore = (roundWinner) =>
+updateScore(roundWinner)
 {
 	if (roundWinner === 1) this.humanScore++;
 	if (roundWinner === -1) this.computerScore++;
 }
 
-getRoundText = (roundWinner) =>
+getRoundText(roundWinner)
 {
 	if (roundWinner === 1) return "You WON the round!";
 	if (roundWinner === -1) return "You LOST the round...";
 	return "It's a TIE!";
 }
 
-getScoreText = () =>
+getScoreText()
 {
 	return this.humanScore + " - " + this.computerScore;
 }
 
-playRound = (humanChoice) =>
+playRound(humanChoice)
 {
 	let computerChoice = this.getComputerChoice();
 	this.playedElement.textContent = `${this.CHOICES[humanChoice]} VS ${this.CHOICES[computerChoice]}`;
@@ -63,12 +63,12 @@ playRound = (humanChoice) =>
 	}
 }
 
-isGameWinner = (score) =>
+isGameWinner(score)
 {
 	return score === WINNING_SCORE;
 }
 
-endGame = (humanWins) =>
+endGame(humanWins)
 {
 	this.toggleButtons(true);
 	let message = "";
@@ -83,12 +83,12 @@ endGame = (humanWins) =>
 
 // UI-related functions
 
-getAllButtons = () =>
+getAllButtons()
 {
 	return document.getElementsByTagName("button");
 }
 
-toggleButtons = (disabled) =>
+toggleButtons(disabled)
 {
 	for (var btn of this.getAllButtons()) btn.disabled = disabled;
 }
