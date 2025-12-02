@@ -3,6 +3,8 @@ let humanScore = 0;
 let computerScore = 0;
 let humanWins = null;
 
+let endgame = document.getElementById("endgame");
+
 function getComputerChoice()
 {
 	return Math.floor(Math.random() * 3);
@@ -15,19 +17,15 @@ function displayScores()
 	return res
 }
 
-function disableButtons()
+function getAllButtons()
 {
-	let allBtns = document.getElementsByTagName("button");
-	for (btn of allBtns) {
-		btn.disabled = true;
-	}
+	return document.getElementsByTagName("button");
 }
 
-function enableButtons()
+function toggleButtons(disabled)
 {
-	let allBtns = document.getElementsByTagName("button");
-	for (btn of allBtns) {
-		btn.disabled = false;
+	for (btn of getAllButtons()) {
+		btn.disabled = disabled;
 	}
 }
 
@@ -37,8 +35,8 @@ function reset()
 	computerScore = 0;
 	round = 0;
 	humanWins = null;
-	enableButtons();
-	document.getElementById("endgame").textContent = "";
+	toggleButtons(false);
+	endgame.textContent = "";
 	document.getElementById("round").textContent = "Click on a button to start the game!";
 }
 
@@ -57,14 +55,15 @@ function roundDisplay(human_choice, computer_choice)
 
 function endGame()
 {
-	disableButtons();
-	console.log(humanWins);
+	let message = "";
+	toggleButtons(true);
 	if (humanWins) {
-		document.getElementById("endgame").innerHTML = "<p>YOU WON THE GAME :)</p>"
+		message = "YOU WON THE GAME :)";
 	} else {
-		document.getElementById("endgame").innerHTML = "<p>YOU LOST THE GAME :(</p>"
+		message = "YOU LOST THE GAME :(";
 	}
-	document.getElementById("endgame").innerHTML += "<button onclick='reset()'>New game</button>";
+	endgame.innerHTML = `<p>${message}</p>`;
+	endgame.innerHTML += "<button onclick='reset()'>New game</button>";
 }
 
 function playRound(human_choice) {
