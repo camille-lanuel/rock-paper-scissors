@@ -1,11 +1,11 @@
 class RockPaperScissors
 {
-constructor(winningScore, playedElement, roundResultElement, scoreElement, endgameElement)
+constructor(winningScore, playedElement, roundMessageElement, scoreElement, endgameElement)
 {
 	this.CHOICES = ["Rock", "Paper", "Scissors"];
 	this.WINNING_SCORE = winningScore;
 	this.playedElement = playedElement;
-	this.roundResultElement = roundResultElement;
+	this.roundMessageElement = roundMessageElement;
 	this.scoreElement = scoreElement;
 	this.endgameElement = endgameElement;
 
@@ -53,7 +53,7 @@ playRound = (humanChoice) =>
 	this.playedElement.textContent = `${this.CHOICES[humanChoice]} VS ${this.CHOICES[computerChoice]}`;
 	let roundWinner = this.getRoundWinner(humanChoice, computerChoice);
 	this.updateScore(roundWinner);
-	this.roundResultElement.textContent = this.getRoundText(roundWinner);
+	this.roundMessageElement.textContent = this.getRoundText(roundWinner);
 	this.scoreElement.textContent = this.getScoreText();
 
 	if(this.isGameWinner(this.humanScore)) {
@@ -99,7 +99,7 @@ reset = () =>
 	this.computerScore = 0;
 	this.toggleButtons(false);
 	this.playedElement.textContent = "Click on a button to start the game!";
-	this.roundResultElement.textContent = "";
+	this.roundMessageElement.textContent = "";
 	this.scoreElement.textContent = "";
 	this.endgameElement.innerHTML = "";
 }
@@ -108,10 +108,10 @@ reset = () =>
 
 const WINNING_SCORE = 5;
 const playedElement = document.getElementById("played");
-const roundResultElement = document.getElementById("round-result");
+const roundMessageElement = document.getElementById("round-result");
 const scoreElement = document.getElementById("score");
 const endgameElement = document.getElementById("endgame");
 
 document.getElementById("winning-score").textContent = WINNING_SCORE;
 
-const rps = new RockPaperScissors(WINNING_SCORE, playedElement, roundResultElement, scoreElement, endgameElement);
+const rps = new RockPaperScissors(WINNING_SCORE, playedElement, roundMessageElement, scoreElement, endgameElement);
