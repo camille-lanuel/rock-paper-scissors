@@ -13,6 +13,8 @@ constructor(winningScore, playedElement, roundResultElement, scoreElement, endga
 	this.computerScore = 0;
 }
 
+getWinningScore = () => {return WINNING_SCORE;}
+
 // RPS game functions
 
 getComputerChoice = () =>
@@ -109,5 +111,7 @@ const playedElement = document.getElementById("played");
 const roundResultElement = document.getElementById("round-result");
 const scoreElement = document.getElementById("score");
 const endgameElement = document.getElementById("endgame");
+
+document.getElementById("winning-score").textContent = WINNING_SCORE;
 
 const rps = new RockPaperScissors(WINNING_SCORE, playedElement, roundResultElement, scoreElement, endgameElement);
