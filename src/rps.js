@@ -1,89 +1,113 @@
-const CHOICES = ["Rock", "Paper", "Scissors"];
-let humanScore = 0;
-let computerScore = 0;
-let humanWins = null;
+class RockPaperScissors
+{
+constructor(winningScore, playedElement, roundResultElement, scoreElement, endgameElement)
+{
+	this.CHOICES = ["Rock", "Paper", "Scissors"];
+	this.WINNING_SCORE = winningScore;
+	this.playedElement = playedElement;
+	this.roundResultElement = roundResultElement;
+	this.scoreElement = scoreElement;
+	this.endgameElement = endgameElement;
 
-let endgame = document.getElementById("endgame");
+	this.humanScore = 0;
+	this.computerScore = 0;
+}
 
-function getComputerChoice()
+// RPS game functions
+
+getComputerChoice = () =>
 {
 	return Math.floor(Math.random() * 3);
 }
 
-function displayScores()
+getRoundWinner = (humanChoice, computerChoice) =>
 {
-	let res = document.createElement("p");
-	res.textContent = humanScore + " - " + computerScore;
-	return res
+	if (humanChoice === (computerChoice + 1) % 3) return 1;
+	if (computerChoice === (humanChoice + 1) % 3) return -1;
+	return 0;
 }
 
-function getAllButtons()
+updateScore = (roundWinner) =>
+{
+	if (roundWinner === 1) this.humanScore++;
+	if (roundWinner === -1) this.computerScore++;
+}
+
+getRoundText = (roundWinner) =>
+{
+	if (roundWinner === 1) return "You WON the round!";
+	if (roundWinner === -1) return "You LOST the round...";
+	return "It's a TIE!";
+}
+
+getScoreText = () =>
+{
+	return this.humanScore + " - " + this.computerScore;
+}
+
+playRound = (humanChoice) =>
+{
+	let computerChoice = this.getComputerChoice();
+	this.playedElement.textContent = `${this.CHOICES[humanChoice]} VS ${this.CHOICES[computerChoice]}`;
+	let roundWinner = this.getRoundWinner(humanChoice, computerChoice);
+	this.updateScore(roundWinner);
+	this.roundResultElement.textContent = this.getRoundText(roundWinner);
+	this.scoreElement.textContent = this.getScoreText();
+
+	if(this.isGameWinner(this.humanScore)) {
+		this.endGame(true);
+	} else if (this.isGameWinner(this.computerScore)) {
+		this.endGame(false);
+	}
+}
+
+isGameWinner = (score) =>
+{
+	return score === WINNING_SCORE;
+}
+
+endGame = (humanWins) =>
+{
+	this.toggleButtons(true);
+	let message = "";
+	humanWins ? message = "YOU WON THE GAME :)" : message = "YOU LOST THE GAME :(";
+	this.endgameElement.innerHTML = `<p>${message}</p>`;
+	// this.endgameElement.innerHTML += "<button onclick='reset()'>New game</button>";
+	const btn = document.createElement("button");
+	btn.textContent = "New game";
+	btn.addEventListener("click", this.reset);
+	this.endgameElement.appendChild(btn);
+}
+
+// UI-related functions
+
+getAllButtons = () =>
 {
 	return document.getElementsByTagName("button");
 }
 
-function toggleButtons(disabled)
+toggleButtons = (disabled) =>
 {
-	for (btn of getAllButtons()) {
-		btn.disabled = disabled;
-	}
+	for (var btn of this.getAllButtons()) btn.disabled = disabled;
 }
 
-function reset()
+reset = () =>
 {
-	humanScore = 0;
-	computerScore = 0;
-	round = 0;
-	humanWins = null;
-	toggleButtons(false);
-	endgame.textContent = "";
-	document.getElementById("round").textContent = "Click on a button to start the game!";
+	this.humanScore = 0;
+	this.computerScore = 0;
+	this.toggleButtons(false);
+	this.playedElement.textContent = "Click on a button to start the game!";
+	this.roundResultElement.textContent = "";
+	this.scoreElement.textContent = "";
+	this.endgameElement.innerHTML = "";
 }
 
-function roundDisplay(human_choice, computer_choice)
-{
-	if(human_choice === (computer_choice + 1) % 3) {
-		humanScore++;
-		return "You WON the round!";
-	}
-	if (computer_choice === (human_choice + 1) % 3) {
-		computerScore++;
-		return "You LOST the round...";
-	}
-	return "It's a TIE!";
-}
+} // class RockPaperScissors
 
-function endGame()
-{
-	let message = "";
-	toggleButtons(true);
-	if (humanWins) {
-		message = "YOU WON THE GAME :)";
-	} else {
-		message = "YOU LOST THE GAME :(";
-	}
-	endgame.innerHTML = `<p>${message}</p>`;
-	endgame.innerHTML += "<button onclick='reset()'>New game</button>";
-}
+const WINNING_SCORE = 5;
+const playedElement = document.getElementById("played");
+const roundResultElement = document.getElementById("round-result");
+const scoreElement = document.getElementById("score");
+const endgameElement = document.getElementById("endgame");
 
-function playRound(human_choice) {
-	let played_round = document.getElementById("round");
-	played_round.innerHTML = "";
-
-	let computer_choice = getComputerChoice();
-	let p = document.createElement("p");
-	p.textContent = `${CHOICES[human_choice]} VS ${CHOICES[computer_choice]}`;
-	played_round.appendChild(p);
-	p = document.createElement("p");
-	p.textContent = roundDisplay(human_choice, computer_choice);
-	played_round.appendChild(p);
-	played_round.appendChild(displayScores());
-
-	if(humanScore == 5) {
-		humanWins = true;
-		endGame();
-	} else if (computerScore == 5) {
-		humanWins = false;
-		endGame();
-	}
-}
+const rps = new RockPaperScissors(WINNING_SCORE, playedElement, roundResultElement, scoreElement, endgameElement);

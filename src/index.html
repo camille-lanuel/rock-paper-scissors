@@ -18,11 +18,17 @@
 			The first player to win 5 rounds wins the game.
 		</h2>
 		<div id="choices">
-			<button onclick="playRound(0)">Rock</button>
-			<button onclick="playRound(1)">Paper</button>
-			<button onclick="playRound(2)">Scissors</button>
+			<button onclick="rps.playRound(0)">Rock</button>
+			<button onclick="rps.playRound(1)">Paper</button>
+			<button onclick="rps.playRound(2)">Scissors</button>
 		</div>
-		<section id="round">Click on a button to start the game!</section>
+		<section id="round">
+			<p id="played">
+				Click on a button to start the game!
+			</p>
+			<p id="round-result"></p>
+			<p id="score"></p>
+		</section>
 		<div id="endgame">
 		</div>
 		<footer>made with <span style="color:#006b60">&#x2764</span> by Camomille</footer>
