@@ -17,6 +17,7 @@ body {
   font-family: "Itim", sans-serif;
   font-size: 1.125rem;
   margin: auto;
+  margin-bottom: 2em;
   max-width: 600px;
   padding: 16px;
 }
