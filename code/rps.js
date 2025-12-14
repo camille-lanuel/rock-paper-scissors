@@ -22,7 +22,7 @@ getComputerChoice()
 	return Math.floor(Math.random() * 3);
 }
 
-getRoundWinner = (humanChoice, computerChoice) =>
+getRoundWinner(humanChoice, computerChoice)
 {
 	if (humanChoice === (computerChoice + 1) % 3) return 1;
 	if (computerChoice === (humanChoice + 1) % 3) return -1;
