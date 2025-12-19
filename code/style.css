@@ -23,8 +23,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--accent2);
-  color: var(--bkg);
+  background-color: var(--accent);
 }
 
 h1, h2 {
@@ -68,7 +67,7 @@ footer {
 
 button {
   background-color: var(--accent);
-  color: var(--txt);
+  color: inherit;
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
@@ -78,14 +77,13 @@ button {
   padding: 8px;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: var(--accent2);
   color: var(--bkg);
 }
 
 button:disabled {
   background-color: var(--accent3);
-  color: var(--bkg);
   cursor: not-allowed;
 }
 
